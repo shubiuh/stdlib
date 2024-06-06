@@ -3,18 +3,23 @@
 [![Actions Status](https://github.com/fortran-lang/stdlib/workflows/CI/badge.svg)](https://github.com/fortran-lang/stdlib/actions)
 [![Actions Status](https://github.com/fortran-lang/stdlib/workflows/CI_windows/badge.svg)](https://github.com/fortran-lang/stdlib/actions)
 
-* [Goals and Motivation](#goals-and-motivation)
-* [Scope](#scope)
-* [Getting started](#getting-started)
-  - [Get the code](#get-the-code)
-  - [Requirements](#requirements)
-  - [Supported compilers](#supported-compilers)
-  - [Build with CMake](#build-with-cmake)
-  - [Build with fortran-lang/fpm](#build-with-fortran-langfpm)
-* [Using stdlib in your project](#using-stdlib-in-your-project)
-* [Documentation](#documentation)
-* [Contributing](#contributing)
-* [Links](#links)
+- [Fortran Standard Library](#fortran-standard-library)
+  - [Goals and Motivation](#goals-and-motivation)
+  - [Scope](#scope)
+  - [Getting started](#getting-started)
+    - [Get the code](#get-the-code)
+    - [Requirements](#requirements)
+    - [Supported Compilers](#supported-compilers)
+    - [Build with CMake](#build-with-cmake)
+    - [Build with fortran-lang/fpm](#build-with-fortran-langfpm)
+      - [Runing the examples](#runing-the-examples)
+  - [Using stdlib in your project](#using-stdlib-in-your-project)
+    - [Using stdlib with CMake](#using-stdlib-with-cmake)
+    - [Using stdlib with fpm](#using-stdlib-with-fpm)
+    - [Using stdlib with a regular Makefile](#using-stdlib-with-a-regular-makefile)
+  - [Documentation](#documentation)
+  - [Contributing](#contributing)
+  - [Links](#links)
 
 ## Goals and Motivation
 
@@ -200,6 +205,19 @@ or the short-cut
 
 ```sh
 python config/fypp_deployment.py --build
+```
+
+Note, on Windows 11 and intel compiler 2024, here is the short-cut
+```powershell
+./oneapi.ps1 # activate the Intel oneAPI environment
+python config/fypp_deployment.py
+fpm build  --compiler  ifort  --c-compiler  gcc  --cxx-compiler  gcc  --flag  -fpp --profile release
+```
+
+Instead, if one wants to use gfortran on Windows to build, firstly install the GFortran from [cygwin](https://cygwin.com/install.html) and add the cygwin to path. Then run the short-cut
+```powershell
+python config/fypp_deployment.py
+fpm build --profile release
 ```
 
 To modify the `maxrank` macro for instance:
